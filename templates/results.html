@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Quả Phân Tích</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .result {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Kết Quả Phân Tích</h1>
+        {% for result in results %}
+            <div class="result">
+                <h5>URL: {{ result['URL website'] }}</h5>  <!-- Sửa lại tên biến -->
+                <p><strong>Số lượng từ:</strong> {{ result['Số lượng từ đếm được'] }}</p>  <!-- Sửa lại tên biến -->
+                <p><strong>Nội dung phân tích:</strong> {{ result['Nội dung chính'] }}</p>  <!-- Sửa lại tên biến -->
+                {% if result['Lỗi'] %}  <!-- Sửa lại tên biến -->
+                    <p class="error"><strong>Lỗi:</strong> {{ result['Lỗi'] }}</p>  <!-- Sửa lại tên biến -->
+                {% endif %}
+            </div>
+        {% endfor %}
+        <a href="/" class="btn btn-primary">Quay Lại</a>
+    </div>
+</body>
+</html>

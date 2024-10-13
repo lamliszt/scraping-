@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quét và Phân Tích Dữ Liệu Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .url-input {
+            margin-bottom: 15px;
+        }
+        /* Hiệu ứng loading */
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            // Hiện phần loading và ẩn nút "Quét Dữ Liệu"
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('submitBtn').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Quét và Phân Tích Dữ Liệu Website</h1>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <form action="/process_urls" method="POST" onsubmit="showLoading()">
+            <div class="url-input">
+                <input type="url" name="urls" class="form-control" placeholder="Nhập URL 1" required>
+            </div>
+            <div class="url-input">
+                <input type="url" name="urls" class="form-control" placeholder="Nhập URL 2" required>
+            </div>
+            <div class="url-input">
+                <input type="url" name="urls" class="form-control" placeholder="Nhập URL 3" required>
+            </div>
+            <button type="submit" id="submitBtn" class="btn btn-primary btn-block">Quét Dữ Liệu</button>
+        </form>
+
+        <!-- Hiệu ứng loading -->
+        <div id="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Đang quét dữ liệu...</span>
+            </div>
+            <p>Đang quét dữ liệu, vui lòng đợi...</p>
+        </div>
+    </div>
+
+    <!-- Thư viện Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
